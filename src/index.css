@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 222 80% 16%;
+    --primary-foreground: 45 100% 55%;
+
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 45 100% 55%;
+    --accent-foreground: 222 80% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 89%;
+    --input: 220 13% 89%;
+    --ring: 45 100% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 80% 10%;
+    --sidebar-foreground: 220 14% 92%;
+    --sidebar-primary: 45 100% 55%;
+    --sidebar-primary-foreground: 222 80% 10%;
+    --sidebar-accent: 222 60% 18%;
+    --sidebar-accent-foreground: 220 14% 92%;
+    --sidebar-border: 222 40% 20%;
+    --sidebar-ring: 45 100% 55%;
+
+    /* Custom UCab tokens */
+    --ucab-gold: 45 100% 55%;
+    --ucab-gold-hover: 42 100% 48%;
+    --ucab-navy: 222 80% 16%;
+    --ucab-navy-deep: 222 80% 10%;
+    --ucab-navy-light: 222 60% 22%;
+    --ucab-surface: 220 20% 97%;
+    --ucab-gradient-start: 222 80% 10%;
+    --ucab-gradient-end: 222 60% 22%;
+  }
+
+  .dark {
+    --background: 222 80% 6%;
+    --foreground: 220 14% 92%;
+
+    --card: 222 60% 10%;
+    --card-foreground: 220 14% 92%;
+
+    --popover: 222 60% 10%;
+    --popover-foreground: 220 14% 92%;
+
+    --primary: 45 100% 55%;
+    --primary-foreground: 222 80% 10%;
+
+    --secondary: 222 40% 16%;
+    --secondary-foreground: 220 14% 92%;
+
+    --muted: 222 40% 14%;
+    --muted-foreground: 220 9% 56%;
+
+    --accent: 45 100% 55%;
+    --accent-foreground: 222 80% 10%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 45 100% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  .ucab-gradient {
+    background: linear-gradient(135deg, hsl(var(--ucab-gradient-start)), hsl(var(--ucab-gradient-end)));
+  }
+
+  .ucab-gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--ucab-gold)), hsl(var(--ucab-gold-hover)));
+  }
+
+  .ucab-text-gradient {
+    background: linear-gradient(135deg, hsl(var(--ucab-gold)), hsl(42 100% 65%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ucab-glass {
+    background: hsla(222, 80%, 10%, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(220, 14%, 92%, 0.1);
+  }
+
+  .ucab-card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .ucab-card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px hsla(var(--ucab-navy), 0.25);
+  }
+}
