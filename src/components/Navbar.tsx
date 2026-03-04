@@ -21,6 +21,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 ucab-glass">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
+
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-lg ucab-gold-gradient flex items-center justify-center">
@@ -35,10 +36,10 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition duration-300 ${
                   location.pathname === link.to
-                    ? "text-accent"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-yellow-400"
+                    : "text-gray-300 hover:text-yellow-300"
                 }`}
               >
                 {link.label}
@@ -49,10 +50,15 @@ export default function Navbar() {
           {/* Auth buttons */}
           <div className="hidden md:flex items-center gap-3">
             <Link to="/login">
-              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-gray-300 hover:text-yellow-300 transition"
+              >
                 Log in
               </Button>
             </Link>
+
             <Link to="/register">
               <Button variant="gold" size="sm">
                 Sign up
@@ -61,7 +67,10 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+          <button
+            className="md:hidden text-gray-200"
+            onClick={() => setOpen(!open)}
+          >
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -77,28 +86,36 @@ export default function Navbar() {
             className="md:hidden ucab-glass border-t border-border/20"
           >
             <div className="px-4 py-4 space-y-2">
+
               {navLinks.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
                   onClick={() => setOpen(false)}
-                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition ${
                     location.pathname === link.to
-                      ? "text-accent bg-accent/10"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-yellow-400 bg-yellow-400/10"
+                      : "text-gray-300 hover:text-yellow-300"
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
+
               <div className="pt-3 flex gap-3">
                 <Link to="/login" className="flex-1" onClick={() => setOpen(false)}>
-                  <Button variant="outline" size="sm" className="w-full">Log in</Button>
+                  <Button variant="outline" size="sm" className="w-full">
+                    Log in
+                  </Button>
                 </Link>
+
                 <Link to="/register" className="flex-1" onClick={() => setOpen(false)}>
-                  <Button variant="gold" size="sm" className="w-full">Sign up</Button>
+                  <Button variant="gold" size="sm" className="w-full">
+                    Sign up
+                  </Button>
                 </Link>
               </div>
+
             </div>
           </motion.div>
         )}
