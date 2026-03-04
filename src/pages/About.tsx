@@ -7,11 +7,11 @@ const teamMembers = [
   },
   {
     name: "Vaibhavi Sinha",
-    role: "Frontend Developer",
+    role: "Frontend Developer, Database",
   },
   {
     name: "Swangi Dubey",
-    role: "Backend Developer",
+    role: "Backend Development, Database",
   },
   {
     name: "Vibhor Saxena",
@@ -19,7 +19,7 @@ const teamMembers = [
   },
   {
     name: "Sunny Sunny",
-    role: "Team Member",
+    role: "Project Setup and Configuration",
   },
 ];
 
