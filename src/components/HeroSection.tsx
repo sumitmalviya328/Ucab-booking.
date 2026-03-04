@@ -7,10 +7,10 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center ucab-gradient overflow-hidden">
 
-      {/* Decorative elements */}
+      {/* Decorative circles */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-accent/5 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-accent/10 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-accent/10 blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-accent/10" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-accent/10" />
       </div>
@@ -32,33 +32,25 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Background Heading */}
+          {/* Heading */}
           <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.25 }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0 flex items-center justify-center text-6xl sm:text-7xl lg:text-8xl font-extrabold text-blue-200 pointer-events-none select-none"
-          >
-            Ride Smart, Ride Safe
-          </motion.h1>
-
-          {/* Main Heading */}
-          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-blue-200 drop-shadow-2xl mb-6"
           >
+            Ride Smart, Ride Safe
+            <br />
             <span className="ucab-text-gradient">
               with UCab
             </span>
-          </motion.h2>
+          </motion.h1>
 
           {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-10"
           >
             Premium cab service with real-time tracking, verified drivers,
@@ -69,7 +61,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link to="/book">
