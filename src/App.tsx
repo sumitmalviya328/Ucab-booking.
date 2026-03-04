@@ -12,7 +12,7 @@ import Payments from "./pages/Payments";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
-import NotFound from "./pages/NotFound";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +32,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
