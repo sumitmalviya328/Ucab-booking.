@@ -11,6 +11,7 @@ const navLinks = [
   { label: "My Rides", to: "/my-rides" },
   { label: "Payments", to: "/payments" },
   { label: "Admin", to: "/admin" },
+  { label: "About", to: "/about" },   
 ];
 
 export default function Navbar() {
