@@ -14,18 +14,43 @@ export default function Login() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
-  const handleLogin = (e:any)=>{
+  const handleLogin = async (e) => {
+
     e.preventDefault();
 
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    try{
 
-    if(user.email === email && user.password === password){
-      alert("Login Successful 🚕");
-      navigate("/bookride");
-    } else {
-      alert("Invalid Email or Password");
+      const response = await fetch("https://ucab-booking-1.onrender.com/login",{
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+          email,
+          password
+        })
+
+      });
+
+      const data = await response.json();
+
+      alert(data.message);
+
+      if(data.message === "Login Success"){
+        navigate("/bookride");
+      }
+
+    }catch(error){
+
+      console.log(error);
+      alert("Server connection error");
+
     }
-  }
+
+  };
 
   return (
     <div className="min-h-screen ucab-gradient flex items-center justify-center px-4 pt-20">
@@ -38,8 +63,14 @@ export default function Login() {
           <div className="w-14 h-14 rounded-xl ucab-gold-gradient flex items-center justify-center mx-auto mb-4">
             <Car className="w-7 h-7 text-accent-foreground" />
           </div>
-          <h1 className="text-2xl font-bold text-card-foreground">Welcome back</h1>
-          <p className="text-sm text-muted-foreground mt-1">Sign in to your UCab account</p>
+
+          <h1 className="text-2xl font-bold text-card-foreground">
+            Welcome back
+          </h1>
+
+          <p className="text-sm text-muted-foreground mt-1">
+            Sign in to your UCab account
+          </p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
@@ -57,7 +88,9 @@ export default function Login() {
 
           <div>
             <Label>Password</Label>
+
             <div className="relative mt-1">
+
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
@@ -65,6 +98,7 @@ export default function Login() {
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
               />
+
               <button
                 type="button"
                 onClick={()=>setShowPassword(!showPassword)}
@@ -72,7 +106,9 @@ export default function Login() {
               >
                 {showPassword ? <EyeOff size={18}/> : <Eye size={18}/>}
               </button>
+
             </div>
+
           </div>
 
           <Button variant="gold" className="w-full py-5">

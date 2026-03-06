@@ -6,25 +6,32 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Home route
 app.get("/", (req, res) => {
   res.send("UCab Backend Running");
 });
 
+// Register
 app.post("/register", (req, res) => {
   console.log("Register data:", req.body);
-  res.send({ message: "User Registered" });
+  res.json({ message: "User Registered Successfully" });
 });
 
+// Login
 app.post("/login", (req, res) => {
   console.log("Login data:", req.body);
-  res.send({ message: "Login Success" });
+  res.json({ message: "Login Success" });
 });
 
+// Book Ride
 app.post("/bookride", (req, res) => {
   console.log("Ride data:", req.body);
-  res.send({ message: "Ride Booked" });
+  res.json({ message: "Ride Booked Successfully" });
 });
 
-app.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+// IMPORTANT: Render compatible port
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

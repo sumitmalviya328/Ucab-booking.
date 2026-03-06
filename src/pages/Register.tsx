@@ -17,32 +17,41 @@ export default function Register() {
   const [phone,setPhone] = useState("");
   const [password,setPassword] = useState("");
 
-  const handleRegister = async (e:any) => {
+  const handleRegister = async (e) => {
 
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/register",{
+    try{
 
-      method:"POST",
+      const response = await fetch("https://ucab-booking-1.onrender.com/register",{
 
-      headers:{
-        "Content-Type":"application/json"
-      },
+        method:"POST",
 
-      body:JSON.stringify({
-        name,
-        email,
-        phone,
-        password
-      })
+        headers:{
+          "Content-Type":"application/json"
+        },
 
-    });
+        body:JSON.stringify({
+          name,
+          email,
+          phone,
+          password
+        })
 
-    const data = await response.json();
+      });
 
-    alert(data.message);
+      const data = await response.json();
 
-    navigate("/login");
+      alert(data.message);
+
+      navigate("/login");
+
+    }catch(error){
+
+      console.log(error);
+      alert("Server connection error");
+
+    }
 
   };
 
