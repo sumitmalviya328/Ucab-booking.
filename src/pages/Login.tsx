@@ -4,11 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, Car } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Login() {
-
-  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [email,setEmail] = useState("");
@@ -40,7 +38,13 @@ export default function Login() {
       alert(data.message);
 
       if(data.message === "Login Success"){
-        navigate("/bookride");
+
+        // login save
+        localStorage.setItem("user","true");
+
+        // page reload + redirect
+        window.location.href = "/book";
+
       }
 
     }catch(error){

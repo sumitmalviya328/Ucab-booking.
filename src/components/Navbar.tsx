@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Car } from "lucide-react";
@@ -11,12 +11,26 @@ const navLinks = [
   { label: "My Rides", to: "/my-rides" },
   { label: "Payments", to: "/payments" },
   { label: "Admin", to: "/admin" },
-  { label: "About", to: "/about" },   
+  { label: "About", to: "/about" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    window.location.href = "/";
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 ucab-glass">
@@ -50,21 +64,35 @@ export default function Navbar() {
 
           {/* Auth buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/login">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-gray-300 hover:text-yellow-300 transition"
-              >
-                Log in
-              </Button>
-            </Link>
 
-            <Link to="/register">
-              <Button variant="gold" size="sm">
-                Sign up
+            {!isLoggedIn ? (
+              <>
+                <Link to="/login">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-gray-300 hover:text-yellow-300 transition"
+                  >
+                    Log in
+                  </Button>
+                </Link>
+
+                <Link to="/register">
+                  <Button variant="gold" size="sm">
+                    Sign up
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={handleLogout}
+              >
+                Logout
               </Button>
-            </Link>
+            )}
+
           </div>
 
           {/* Mobile menu button */}
@@ -104,17 +132,32 @@ export default function Navbar() {
               ))}
 
               <div className="pt-3 flex gap-3">
-                <Link to="/login" className="flex-1" onClick={() => setOpen(false)}>
-                  <Button variant="outline" size="sm" className="w-full">
-                    Log in
-                  </Button>
-                </Link>
 
-                <Link to="/register" className="flex-1" onClick={() => setOpen(false)}>
-                  <Button variant="gold" size="sm" className="w-full">
-                    Sign up
+                {!isLoggedIn ? (
+                  <>
+                    <Link to="/login" className="flex-1" onClick={() => setOpen(false)}>
+                      <Button variant="outline" size="sm" className="w-full">
+                        Log in
+                      </Button>
+                    </Link>
+
+                    <Link to="/register" className="flex-1" onClick={() => setOpen(false)}>
+                      <Button variant="gold" size="sm" className="w-full">
+                        Sign up
+                      </Button>
+                    </Link>
+                  </>
+                ) : (
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    className="w-full"
+                    onClick={handleLogout}
+                  >
+                    Logout
                   </Button>
-                </Link>
+                )}
+
               </div>
 
             </div>
